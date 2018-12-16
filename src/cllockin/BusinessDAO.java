@@ -16,9 +16,10 @@ public class BusinessDAO {
 	
 	MongoDatabase database;
 	 
-	
+	//mongodb://zohaib3274:halal101@ds155213.mlab.com:55213/gql-library
+	//mongodb://clockinTest:shito564@ds135724.mlab.com:35724/clockin
 	public BusinessDAO() {
-		MongoClient mc = new MongoClient(new MongoClientURI("mongodb://localhost:27017"));
+		MongoClient mc = new MongoClient(new MongoClientURI("mongodb://clockinTest:shito564@ds135724.mlab.com:35724/clockin"));
 		database = mc.getDatabase("clockin");
 	}
 	

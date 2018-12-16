@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
      <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+     
 <!DOCTYPE html>
 <html>
 	<head>
@@ -124,7 +125,7 @@
 		<div class="modal fade" id="addNewEmpModal" style="background: #1A1A1D" tabindex="-1" role="dialog" 
 		aria-labelledby="exampleModalLabel" aria-hidden="true">
 		  <div class="modal-dialog" role="document">
-		  	<form>
+		  	<form action = "saveEmployee" method="post">
 		    <div class="modal-content">
 		      <div class="modal-header">
 		        <h5 class="modal-title" id="exampleModalLabel" style="color: black">New Employee</h5>
@@ -133,11 +134,12 @@
 		        </button>
 		      </div>
 		      <div class="modal-body">
-		        <form action = "saveEmployee" method="post">
+		        
 					  <div class="form-row">
 					    <div class="form-group col-md-6">
 					    <label for="validationDefault1" style="color: black">First Name</label>
-					      <input type="text" class="form-control input" id="validationDefault1" placeholder="First Name" required/>
+					      <input type="text" class="form-control input" name="fname" 
+					      id="validationDefault1" placeholder="First Name" required/>
 					    </div>
 					    <div class="form-group col-md-6">
 					    	<label for="validationDefault4" style="color: black">Last Name</label>
@@ -164,11 +166,11 @@
 					    </div>
 					  </div>
 					  	
-					</form>
+					
 		      </div>
 		      <div class="modal-footer">
 		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-		        <button type="button" class="btn btn-primary">Save changes</button>
+		        <button type="submit" class="btn btn-primary">Save changes</button>
 		      </div>
 		    </div>
 		    </form>
