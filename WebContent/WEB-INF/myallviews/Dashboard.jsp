@@ -225,9 +225,10 @@
 			 			Manage Employees
 			 		</button>
 			 	</div>
+			 	
+			 	<div class="col-sm"><button class="btn">.Batch</button></div>
+			 	<div class="col-sm"><button class="btn">Shop</button></div>
 			 	<div class="col-sm"><button class="btn">Account Settings</button></div>
-			 	<div class="col-sm"></div>
-			 	<div class="col-sm"></div>
 			 </div>
 			 </div>
 		</div>

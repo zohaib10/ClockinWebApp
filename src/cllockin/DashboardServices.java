@@ -1,5 +1,7 @@
 package cllockin;
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -23,12 +25,20 @@ public class DashboardServices {
 		return "HomePage";
 	}
 	
+	@RequestMapping(value="returnManageEmployees", method=RequestMethod.GET)
+	public String returnEmployeeManagementPage(ModelMap map, HttpServletRequest req) {
+		ArrayList<EmployeeModel> emp = new EmployeeDAO().getAllEmployees((Integer)req.getSession().getAttribute("businessid"));
+		map.addAttribute("employeeList", emp);
+		return "manageEmployees";
+	}
+	
+	
 	@RequestMapping(value="checkAdminPassword", method=RequestMethod.POST)
 	public String checkAdminPassword(HttpServletRequest req, ModelMap map) {
 		System.out.println(req.getParameter("admin-pass-verify"));
 		System.out.println(req.getSession().getAttribute("businessid"));
 		if(new BusinessDAO().isValidAdmin(req.getParameter("admin-pass-verify"),(Integer)req.getSession().getAttribute("businessid"))) {
-			return "manageEmployees";
+			return "redirect:/returnManageEmployees";
 		}else {
 			BusinessModel buss = new BusinessDAO().getBusinessDetails((Integer)req.getSession().getAttribute("businessid"));
 			System.out.println(buss.toString());

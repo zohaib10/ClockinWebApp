@@ -10,7 +10,6 @@
 		<title>Manage Employees</title>
 		<link rel="stylesheet" href="resources/bootstrap.css"/>
 		<link rel="stylesheet" href="resources/bootstrap.min.css"/>
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
 		<style>
 			body{
 				background: #1A1A1D;
@@ -79,60 +78,113 @@
 					<div class="col-sm">
 						<button class="btn" style="width: 100px"><i class="fa fa-arrow-left"></i> Back</button>
 					</div>
-					<div class="col-sm text-center">
-						<h4 style="margin-top: 20px">Current Employees</h4>
+					<div class="col-sm ">
+						<button class="btn float-sm-right" style="width: 100px"><i class="fa fa-arrow-left"></i> Edit</button>
 					</div>
-					<div class="col-sm">
-						<div class="input-group mb-3 float-sm-right" style="width: 250px">
-						  <input type="text" class="form-control input" style="margin-top: 20px; border: 1px solid white" 
-						  placeholder="Search Employees" aria-label="Search Employees" aria-describedby="basic-addon2">
-						  <div class="input-group-append">
-						    <button class="btn btn-outline-secondary" type="button" style="width: 50px; border: 1px solid #ff2400">
-								<i class="fa fa-search"></i>
-							</button>
-						  </div>
-						</div>
-					</div>
+					
 				</div>
 				
-				<div class="row" style="height: 520px; margin-top: 10px">
-				<table class="table table-dark">
-				  <thead class="thead-dark">
-		    <tr>
-		      <th scope="col">Name</th>
-		      <th scope="col">Phone</th>
-		      <th scope="col">Active</th>
-		      <th scope="col">Pay Period hours</th>
-		      <th scope="col">Paid</th>
-		    </tr>
-		  </thead>
-		  <tbody>
-			<c:forEach var= "emp" items="${employeeList}">
-				<tr class="table-row" id="${emp.empid}">
-					<td>${emp.firstName} ${emp.lastName}</td>
-					<td>${emp.phone}</td>
-					<td>${emp.active}</td>
-					<td>N/A</td>
-					<td>N/A</td>
-				</tr>
-			</c:forEach>
-			</tbody>
-		</table>
-				
-			
-			</div>
-			 <div class="row" style="">
+			<div class="row" style="height: 520px; margin-top: 10px">
+				<div class="container">
+			<form action="newUserRegister" name="loginform" method="post">
+			  <div class="form-row">
+			    <div class="col-md-4 mb-4">
+			      <label for="validationDefault01">First name</label>
+			      <input type="text" class="form-control input" id="validationDefault01" name="fname" 
+			      value='${employee.firstName}'  disabled required>
+			    </div>
+			    <div class="col-md-4 mb-4">
+			      <label for="validationDefault02">Last name</label>
+			      <input type="text" class="form-control input" id="validationDefault02" name="lname" 
+			      value='${employee.lastName}'  disabled required>
+			    </div>
+			    <div class="col-md-4 mb-4">
+			      <label for="validationDefaultUsername">Hire Date</label>
+			      <div class="input-group">
+			        <input type="date" class="form-control input" id="hireDate" name="hireDate" disabled
+			         aria-describedby="inputGroupPrepend2" required>
+			      </div>
+			    </div>
+			  </div>
+			  
+			  <div class="form-row">
+			    <div class="col-md-6 mb-6">
+			      <label for="validationDefault11">Account Email</label>
+			      <input type="email" class="form-control input" id="validationDefault11" 
+			      value='${employee.email}' disabled name="aemail" required>
+			    </div>
+			    <div class="col-md-6 mb-6">
+			      <label for="validationDefault12">Account Password</label>
+			      <input type="password" class="form-control input" id="validationDefault12" 
+			      value='${employee.password}' disabled name="apassword" required>
+			    </div>
+			  </div>
+			  </br>
+			  <div class="form-row">
+			    <div class="col-md-4 mb-4">
+			      <label for="validationDefault03">Account Phone</label>
+			      <input type="text" class="form-control bfh-phone input" data-format="+1 (ddd) ddd-dddd" disabled
+			      value='${employee.phone}' name="aphone" id="validationDefault03" required>
+			    </div>
+			    
+			    <div class="col-md-4 mb-4">
+			      <label for="validationDefaultUsername">Pay Period Hours</label>
+			      <div class="input-group">
+			        <input type="text" class="form-control input" id="ppHours" name="ppHours" disabled
+			        aria-describedby="inputGroupPrepend2" required>
+			      </div>
+			    </div>
+			    
+			    <div class="col-md-4 mb-4">
+			      <label for="validationDefaultUsername">Year To Date Something</label>
+			      <div class="input-group">
+			        <input type="text" class="form-control input" id="ytd" name="ytd" disabled
+			        aria-describedby="inputGroupPrepend2" required>
+			      </div>
+			    </div>
+			    
+			    
+			    
+			  </div>
+			  
+			  <div class="row" style="">
+			 	<div class="col-sm">
+			 		<button class="btn manage-employees-button " data-toggle="modal" data-target="#addNewEmpModal">
+			 			<i class="fa fa-plus-circle"></i>
+			 			Change Password
+			 		</button>
+			 	</div>
+			 	<div class="col-sm text-center">
+			 		<button class="btn manage-employees-button" data-toggle="modal" data-target="#addNewEmpModal">
+			 			<i class="fa fa-plus-circle"></i>
+			 			Pay
+			 		</button>
+			 	</div>
 			 	<div class="col-sm">
 			 		<button class="btn manage-employees-button float-sm-right" data-toggle="modal" data-target="#addNewEmpModal">
 			 			<i class="fa fa-plus-circle"></i>
-			 			Add New Employee
+			 			Current Pay Stub
 			 		</button>
 			 	</div>
 			 </div>
+			</form>
+		
+		
+		
+		</div>
+				
+			
+			</div>
+			
 				
 			</div>
 		
 		</div>
+		
+		<form name="submitForm" method="POST" action="viewEmployee">
+    		<input id="idForForm" type="hidden" name="param1" value="nil">
+			<!--     <A HREF="javascript:document.submitForm.submit()">Click Me</A>-->
+		</form>
 		
 		<!-- Modal Add New Employee-->
 		<div class="modal fade" id="addNewEmpModal" style="background: #1A1A1D" tabindex="-1" role="dialog" 
@@ -194,10 +246,6 @@
 		  </div>
 		</div>
 		
-		
-		<form name="submitForm" id="" method="POST" action="viewEmployee">
-    		<input id="idForForm" type="hidden" name="param1" value="nil">
-		</form>
 		
 		
 		<script src="resources/jquerylib.js"></script>

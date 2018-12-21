@@ -2,35 +2,38 @@ package cllockin;
 
 public class EmployeeModel {
 
+	private int empid;
 	private String firstName;
 	private String lastName;
 	private String email;
 	private String password;
 	private String phone;
-	private double weeklyHoursWorked;
-	private double biWeeklyHoursWorked;
-	private double monthlyHoursWorked;
-	private double totalHoursWorked;
-	private boolean paid;
+	private int id;
+	private String active;
 	
 	public EmployeeModel() {}
 	
-	public EmployeeModel(String firstName, String lastName, String email, String phone, String password) {
+	public EmployeeModel(String firstName, String lastName, String email, String phone, String password, int id, String active, int empid) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
 		this.password = password;
 		this.phone = phone;
-		this.weeklyHoursWorked = 0.0;
-		this.monthlyHoursWorked = 0.0;
-		this.setBiWeeklyHoursWorked(0.0);
-		this.totalHoursWorked = 0.0;
-		this.paid = false;
+		this.id = id;
+		this.active = active;
+		this.empid = empid;
 	}
 	
+	public String getActive() {
+		return active;
+	}
+
+	public void setActive(String active) {
+		this.active = active;
+	}
+
 	public String toString() {
-		return firstName + " | " + lastName + " | " + email + " | " + password + " | " + weeklyHoursWorked + " | " + biWeeklyHoursWorked
-				+ " | " + monthlyHoursWorked + " | " + totalHoursWorked + " | " + paid;
+		return firstName + " | " + lastName + " | " + email + " | " + password  + " | " + phone + " | " + id + " | " + active + " | " + empid;
 	}
 	
 	public String getFirstName() {
@@ -63,41 +66,19 @@ public class EmployeeModel {
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-	public double getWeeklyHoursWorked() {
-		return weeklyHoursWorked;
+	public void setId(int id) {
+		this.id = id;
 	}
-	public void setWeeklyHoursWorked(double weeklyHoursWorked) {
-		this.weeklyHoursWorked = weeklyHoursWorked;
-	}
-	public double getMonthlyHoursWorked() {
-		return monthlyHoursWorked;
-	}
-	public void setMonthlyHoursWorked(double monthlyHoursWorked) {
-		this.monthlyHoursWorked = monthlyHoursWorked;
-	}
-	public double getTotalHoursWorked() {
-		return totalHoursWorked;
-	}
-	public void setTotalHoursWorked(double totalHoursWorked) {
-		this.totalHoursWorked = totalHoursWorked;
-	}
-	public boolean isPaid() {
-		return paid;
-	}
-	public void setPaid(boolean paid) {
-		this.paid = paid;
+	public int getId() {
+		return id;
 	}
 
-
-
-	public double getBiWeeklyHoursWorked() {
-		return biWeeklyHoursWorked;
+	public int getEmpid() {
+		return empid;
 	}
 
-
-
-	public void setBiWeeklyHoursWorked(double biWeeklyHoursWorked) {
-		this.biWeeklyHoursWorked = biWeeklyHoursWorked;
+	public void setEmpid(int empid) {
+		this.empid = empid;
 	}
 	
 	
