@@ -5,9 +5,12 @@ import java.util.List;
 
 import org.bson.Document;
 
+import com.mongodb.BasicDBObject;
 import com.mongodb.DBCollection;
+import com.mongodb.DBCursor;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
+import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
@@ -37,6 +40,11 @@ public class BusinessDAO {
 			}
 		}
 		return id;
+	}
+	
+	public String getBusinessName(int bussid) {
+		MongoCollection<Document> collection = database.getCollection("businesses");
+	    return "hi";
 	}
 	
 	public boolean isUserValid(String email, String password){

@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.bson.Document;
 
+import com.mongodb.DBCollection;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
 import com.mongodb.client.MongoCollection;
@@ -22,6 +23,25 @@ public class EmployeeDAO {
 		MongoDatabase database = mc.getDatabase("clockin");
 		collection = database.getCollection("employees");
 	}
+	
+	public void updateEmployee(EmployeeModel employee) {
+		EmployeeModel exsistingEmp = new EmployeeDAO().getEmployee(employee.getEmpid());
+		if(!employee.employeeCompare(exsistingEmp)) {
+			collection.deleteOne(new Document("_id", exsistingEmp.getEmpid()));
+			Document doc = new Document("_id", employee.getEmpid())
+					.append("firstname", employee.getFirstName())
+	                .append("lastname", employee.getLastName())
+	                .append("employeeemail", employee.getEmail())
+	                .append("employeepassword", employee.getPassword())
+	                .append("employeephone", employee.getPhone())
+	                .append("businessid", employee.getId())
+	                .append("active", employee.getActive())
+	                .append("date", employee.getDate())
+	                .append("hourly", employee.getHourlyRate());
+			collection.insertOne(doc);
+		}
+	}
+	
 	public EmployeeModel getEmployee(int empid) {
 		List<Document> documents = (List<Document>) collection.find().into(
 				new ArrayList<Document>());
@@ -32,7 +52,7 @@ public class EmployeeDAO {
 				 emp = new EmployeeModel(document.getString("firstname"),document.getString("lastname"),
 						document.getString("employeeemail"),document.getString("employeephone"),
 						document.getString("employeepassword"), document.getInteger("businessid"), 
-						document.getString("active"),document.getInteger("_id"));
+						document.getString("active"),document.getInteger("_id"),document.getString("date"),document.getDouble("hourly"));
 				
 			}
 		}
@@ -48,7 +68,8 @@ public class EmployeeDAO {
 			if( id == bussid) {
 				EmployeeModel emp = new EmployeeModel(document.getString("firstname"),document.getString("lastname"),
 						document.getString("employeeemail"),document.getString("employeephone"),
-						document.getString("employeepassword"), bussid, document.getString("active"),document.getInteger("_id"));
+						document.getString("employeepassword"), bussid, document.getString("active"),
+						document.getInteger("_id"),document.getString("date"),document.getDouble("hourly"));
 				newList.add(emp);
 			}
 		}
@@ -65,10 +86,14 @@ public class EmployeeDAO {
                 .append("employeepassword", emp.getPassword())
                 .append("employeephone", emp.getPhone())
                 .append("businessid", emp.getId())
-                .append("active", "Yes");
+                .append("active", "Yes")
+                .append("date", emp.getDate())
+                .append("hourly", emp.getHourlyRate());
 		collection.insertOne(doc);
 		
 	}
+	
+	
 	
 	public int getNextVal() {
 		List<Document> documents = (List<Document>) collection.find().into(

@@ -64,7 +64,7 @@
 			</a>
 			</div>
 			<div class="col-sm text-center">
-	   			<h4 style="margin-top: 20px">${businessaccount.businessName}</h4>
+	   			<h4 style="margin-top: 20px">${businessName}</h4>
 	   		</div>
 	   		<div class="col-sm">
 	   			<button class="btn logout-button float-sm-right" style="width: 100px">Logout</button>
@@ -108,6 +108,7 @@
 		  </thead>
 		  <tbody>
 			<c:forEach var= "emp" items="${employeeList}">
+				<input id="busidForForm1" type="hidden" name="busid" value="${emp.id}"/>
 				<tr class="table-row" id="${emp.empid}">
 					<td>${emp.firstName} ${emp.lastName}</td>
 					<td>${emp.phone}</td>
@@ -181,10 +182,13 @@
 					      	id="validationDefault5" data-format="+1 (ddd) ddd-dddd" 
 					      	name="aphone" placeholder="Employee Phone" required>
 					    </div>
+					    <div class="form-group col-md-6">
+					    	<label for="validationDefault4" style="color: black">Hourly Rate</label>
+					      	<input type="number" name="hourlyRate" class="form-control input" 
+					      	id="hourlyRate" placeholder="$" required/>
+					    </div>
 					  </div>
-					  	
-					
-		      </div>
+				</div>
 		      <div class="modal-footer">
 		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 		        <button type="submit" class="btn btn-primary">Save changes</button>
@@ -196,7 +200,8 @@
 		
 		
 		<form name="submitForm" id="" method="POST" action="viewEmployee">
-    		<input id="idForForm" type="hidden" name="param1" value="nil">
+    		<input id="idForForm" type="hidden" name="param1" value="nil"/>
+    		<input id="busidForForm" type="hidden" name="busid" value="1"/>
 		</form>
 		
 		
@@ -206,8 +211,8 @@
 		<script src="resources/bootstrap.min.js"></script>
 		<script>
 		$(document).ready(function() {
+			$("#busidForForm").val($("#busidForForm").val());
 			$(".table-row").on("click", function(){
-				console.log($(this)[0].id);
 				$("#idForForm").val($(this)[0].id);
 				document.submitForm.submit();
 			})
