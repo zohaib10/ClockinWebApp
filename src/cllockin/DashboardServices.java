@@ -47,4 +47,13 @@ public class DashboardServices {
 			return "Dashboard";
 		}
 	}
+	
+
+	@RequestMapping (value="checkUserPassword",method=RequestMethod.POST)
+	public String usePass(ModelMap map, HttpServletRequest request, HttpServletResponse response) {
+		System.out.println(request.getParameter("user-pass-verify"));
+		System.out.println(request.getParameter("type"));
+		
+		return "Dashboard";
+	}
 }

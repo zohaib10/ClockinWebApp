@@ -68,16 +68,16 @@
 			<div class="col-sm" style=" height: 100px">
 				<div class="row text-center">
 					<div class="col-sm">
-						<button class="btn">Clock In</button>
+						<button class="btn btn2" data-toggle="modal" data-target="#getUserPassword" id="btn2">Clock In</button>
 					</div>
 					<div class="col-sm">
-						<button class="btn">Lunch Out</button>
+						<button class="btn btn2" data-toggle="modal" data-target="#getUserPassword" id="btn2">Lunch Out</button>
 					</div>
 					<div class="col-sm">
-						<button class="btn">Lunch In</button>
+						<button class="btn btn2" data-toggle="modal" data-target="#getUserPassword" id="btn2">Lunch In</button>
 					</div>
 					<div class="col-sm">
-						<button class="btn">Clock Out</button>
+						<button class="btn btn2" data-toggle="modal" data-target="#getUserPassword" id="btn2">Clock Out</button>
 					</div>
 				</div>
 			
@@ -147,6 +147,40 @@
 		</div>
 		
 		
+		<div class="modal fade" id="getUserPassword" style="background: #1A1A1D" tabindex="-1" role="dialog" 
+		aria-labelledby="exampleModalLabel1" aria-hidden="true">
+		 <div class="modal-dialog" role="document">
+		 	<form action="checkUserPassword" method="post">
+		    <div class="modal-content">
+		      <div class="modal-body">
+		        <div class="col-md-8 mb-8">
+			      <label for="validationDefault111" style="color: #1A1A1D" >Enter your password</label>
+			      <input type="password" autocomplete="off" class="form-control input" id="validationDefault111" readonly 
+					onfocus="this.removeAttribute('readonly');" name="user-pass-verify" style= "background: white" required>
+					<input id="typeOfOp" type="hidden" name="type" value="nil"/>
+			    </div>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn" data-dismiss="modal">Close</button>
+		        <button type="submit" class="btn checkUserPassword">Submit</button>
+		      </div>
+		    </div>
+		    </form>
+		  </div>
+		</div>
+		<!--incorrect AdminPass Modal -->
+		<div class="modal fade incorrectUserPass" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" 
+		aria-hidden="true">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		     	<div class="modal-body" style="color: black">
+		        	User not found!
+		      </div>
+		    </div>
+		  </div>
+		</div>
+		
+		
 		<script src="resources/jquerylib.js"></script>
 		<script src="resources/bootstrap.js"></script>
 		<script src="resources/bootstrap.min.js"></script>
@@ -155,6 +189,10 @@
 			$(".logout-button").click(function(){
 				 window.location.href = "logoutuser";
 			});
+			$('.btn2').on('click',function(){
+				$('#typeOfOp').val($(this).text());
+				console.log($('#typeOfOp').val());
+			})
 			/* $(".checkAdminPassword").click(function(){
 				 window.location.href = "checkAdminPassword/"+$("#validationDefault11").val();
 			}); */
